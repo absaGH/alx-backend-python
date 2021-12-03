@@ -3,6 +3,5 @@
 
 
 def to_str(n: float) -> str:
-    """function that accepts float value & return
-    string reprsentation of it"""
+    """function that accepts float value & return string reprsentation of it"""
     return str(n)
