@@ -1,4 +1,4 @@
-# /usr/bin/env python3
+#!/usr/bin/env python3
 """Annotation of different types of variables"""
 
 a: int = 1
