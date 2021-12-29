@@ -1,4 +1,4 @@
-#!/usr/bin/env ptyhon
+#!/usr/bin/env ptyhon3
 '''
 Module to test functions in utils.py
 '''
