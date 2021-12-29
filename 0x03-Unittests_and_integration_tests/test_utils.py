@@ -1,4 +1,4 @@
-#!/usr/bin/env ptyhon3
+#!/usr/bin/env python3
 '''
 Module to test functions in utils.py
 '''
@@ -11,7 +11,7 @@ class TestAccessNestedMap(unittest.TestCase):
     '''Test class for AccessNestedMap function'''
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
-        ({"a": {"b": 2}}, ("a",), {'b': 2}),
+        ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2),
     ])
     def test_access_nested_map(self, nested_map, path, out):
