@@ -1,0 +1,2 @@
+# Unittests and Integration Tests
+This project focuses on Unit testing and Integration testing. Python provides the unittest framework and unittest.mock libray to faciliate the process. The tasks cover testing patterns such as mocking, parameterizations & fixtures.
