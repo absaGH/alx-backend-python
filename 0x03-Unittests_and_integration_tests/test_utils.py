@@ -3,7 +3,7 @@
 Module to test functions in utils.py
 '''
 import unittest
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 from parameterized import parameterized, parameterized_class
 from unittest.mock import Mock
 from unittest.mock import patch
@@ -50,3 +50,24 @@ class TestGetJson(unittest.TestCase):
             mock_requests.get.assert_called_once()
             mock_requests.get.assertEqual(a, test_payload)
             mock_requests.get.assert_called_with(test_url)
+
+
+class TestMemoize(unittest.TestCase):
+    '''Test class for memoize function'''
+
+    def test_memoize(self):
+        '''tests whether memoization is working'''
+        class TestClass:
+
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
+
+        with patch.object(TestClass, 'a_method') as moc_obj:
+            obj = TestClass()
+            obj.a_property()
+            obj.a_property()
+            moc_obj.assert_called_once()
