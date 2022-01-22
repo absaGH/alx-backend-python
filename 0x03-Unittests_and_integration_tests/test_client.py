@@ -47,3 +47,5 @@ class TestGithubOrgClient(unittest.TestCase):
             test_return = obj._public_repos_url
             self.assertEqual(test_return,
                              moc_obj.return_value.get('repos_url'))
+            moc_getjson.assert_called_once
+            moc_obj.assert_called_once
