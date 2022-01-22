@@ -41,7 +41,7 @@ class TestGithubOrgClient(unittest.TestCase):
         '''function to test _public_repos_url() method'''
         moc_getjson.get_json.return_value = {'payload': True}
         with patch('client.GithubOrgClient.org', new_callable=PropertyMock) as moc_obj:
-            payload = {'repos_url': 'https://api.github.com/orgs/google/repos'}
+            payload = {'repos_url': 'https://api.github.com/'}
             moc_obj.return_value = payload
             obj = GithubOrgClient('google')
             test_return = obj._public_repos_url
