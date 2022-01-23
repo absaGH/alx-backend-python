@@ -38,14 +38,13 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(test_return,
                              moc_obj.return_value.get('repos_url'))
 
-    @patch('client.get_json')
+    @patch('client.get_json', return_value=[{'name': 'google'}])
     def test_public_repos(self, moc_getjson):
         '''function to test public_repos() method'''
-        moc_getjson.return_value = [{"name": "google"}]
         with patch.object(GithubOrgClient,
                           "_public_repos_url",
-                          new_callable=PropertyMock) as moc_obj:
-            moc_obj.return_value = "https://api.github.com/"
+                          new_callable=PropertyMock,
+                          return_value="https://api.github.com/") as moc_obj:
             obj = GithubOrgClient("google")
             test_return = obj.public_repos()
             self.assertEqual(test_return, ["google"])
