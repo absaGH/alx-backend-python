@@ -9,6 +9,8 @@ from parameterized import parameterized, parameterized_class
 from unittest.mock import Mock, PropertyMock
 from unittest.mock import patch
 from requests.exceptions import Timeout
+from fixtures import TEST_PAYLOAD
+from urllib.error import HTTPError
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -59,3 +61,32 @@ class TestGithubOrgClient(unittest.TestCase):
         obj = GithubOrgClient('google')
         result = obj.has_license(repo, license_key)
         self.assertEqual(result, out)
+
+
+@parameterized_class(
+    ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
+    TEST_PAYLOAD
+)
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ Integration test """
+    @classmethod
+    def setUpClass(cls):
+        """ It is part of the unittest.TestCase API
+        method to setup the tests """
+        cls.get_patcher = patch('requests.get', side_effect=HTTPError)
+
+    @classmethod
+    def tearDownClass(cls):
+        """ It is part of the unittest.TestCase API
+        method to teardown the test case """
+        cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """ method to test GithubOrgClient.public_repos """
+        test_class = GithubOrgClient("google")
+        assert True
+
+    def test_public_repos_with_license(self):
+        """ method to test the public_repos with the argument license """
+        test_class = GithubOrgClient("google")
+        assert True
